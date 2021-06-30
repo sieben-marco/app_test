@@ -2,6 +2,23 @@
 <issues format="4" by="lint 3.1.3">
 
     <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 19 (current min is 16): android.view.inputmethod.InputMethodManager#shouldOfferSwitchingToNextInputMethod"
+        category="Correctness"
+        priority="6"
+        summary="Calling new methods on older versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on **all** versions targeted by this application (according to its minimum SDK attribute in the manifest).&#xA;&#xA;If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `build.gradle` or `AndroidManifest.xml` files.&#xA;&#xA;If your code is **deliberately** accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.&#xA;&#xA;If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v`*NN* folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.&#xA;&#xA;Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="                mInputMethodManager.shouldOfferSwitchingToNextInputMethod(getToken());"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        quickfix="studio">
+        <location
+            file="/home/marcosieben16/app_test/app/src/main/java/com/example/android/softkeyboard/SoftKeyboard.java"
+            line="156"
+            column="37"/>
+    </issue>
+
+    <issue
         id="OldTargetApi"
         severity="Warning"
         message="Not targeting the latest versions of Android; compatibility &#xA;modes apply. Consider testing and updating this version. &#xA;Consult the android.os.Build.VERSION_CODES javadoc for details."
@@ -15,7 +32,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~"
         quickfix="studio">
         <location
-            file="/home/marcosieben16/SoftKeyboard/app/build.gradle"
+            file="/home/marcosieben16/app_test/app/build.gradle"
             line="8"
             column="9"/>
     </issue>
@@ -32,9 +49,112 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         quickfix="studio">
         <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/xml/method.xml"
+            file="/home/marcosieben16/app_test/app/src/main/res/xml/method.xml"
             line="25"
             column="9"/>
+    </issue>
+
+    <issue
+        id="WrongCall"
+        severity="Error"
+        message="Suspicious method call; should probably call &quot;`draw`&quot; rather than &quot;`onDraw`&quot;"
+        category="Correctness"
+        priority="6"
+        summary="Using wrong draw/layout method"
+        explanation="Custom views typically need to call `measure()` on their children, not `onMeasure`. Ditto for onDraw, onLayout, etc."
+        errorLine1="        onDraw(null);"
+        errorLine2="        ~~~~~~"
+        quickfix="studio">
+        <location
+            file="/home/marcosieben16/app_test/app/src/main/java/com/example/android/softkeyboard/CandidateView.java"
+            line="249"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="WrongCall"
+        severity="Error"
+        message="Suspicious method call; should probably call &quot;`draw`&quot; rather than &quot;`onDraw`&quot;"
+        category="Correctness"
+        priority="6"
+        summary="Using wrong draw/layout method"
+        explanation="Custom views typically need to call `measure()` on their children, not `onMeasure`. Ditto for onDraw, onLayout, etc."
+        errorLine1="        onDraw(null);"
+        errorLine2="        ~~~~~~"
+        quickfix="studio">
+        <location
+            file="/home/marcosieben16/app_test/app/src/main/java/com/example/android/softkeyboard/CandidateView.java"
+            line="310"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        severity="Warning"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)"
+        category="Correctness"
+        priority="5"
+        summary="Layout Inflation without a Parent"
+        explanation="When inflating a layout, avoid passing in null as the parent view, since otherwise any layout parameters on the root of the inflated layout will be ignored."
+        url="http://www.doubleencore.com/2013/05/layout-inflation-as-intended"
+        urls="http://www.doubleencore.com/2013/05/layout-inflation-as-intended"
+        errorLine1="                R.layout.input, null);"
+        errorLine2="                                ~~~~">
+        <location
+            file="/home/marcosieben16/app_test/app/src/main/java/com/example/android/softkeyboard/SoftKeyboard.java"
+            line="148"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of com.android.support.constraint:constraint-layout than 1.1.2 is available: 2.0.4"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation &apos;com.android.support.constraint:constraint-layout:1.1.2&apos;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        quickfix="studio">
+        <location
+            file="/home/marcosieben16/app_test/app/build.gradle"
+            line="31"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of com.android.support:appcompat-v7 than 25.3.1 is available: 25.4.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation &apos;com.android.support:appcompat-v7:25.3.1&apos;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        quickfix="studio">
+        <location
+            file="/home/marcosieben16/app_test/app/build.gradle"
+            line="32"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.annotation:annotation than 1.0.0 is available: 1.2.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation  &apos;androidx.annotation:annotation:1.0.0&apos; "
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        quickfix="studio">
+        <location
+            file="/home/marcosieben16/app_test/app/build.gradle"
+            line="36"
+            column="5"/>
     </issue>
 
     <issue
@@ -51,7 +171,7 @@
         errorLine2="    ^"
         quickfix="studio">
         <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/AndroidManifest.xml"
+            file="/home/marcosieben16/app_test/app/src/main/AndroidManifest.xml"
             line="3"
             column="5"/>
     </issue>
@@ -70,285 +190,25 @@
         errorLine2="    ^"
         quickfix="studio">
         <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/AndroidManifest.xml"
+            file="/home/marcosieben16/app_test/app/src/main/AndroidManifest.xml"
             line="3"
             column="5"/>
     </issue>
 
     <issue
-        id="UnusedResources"
+        id="DrawAllocation"
         severity="Warning"
-        message="The resource `R.color.candidate_normal` appears to be unused"
+        message="Avoid object allocations during draw/layout operations (preallocate and reuse instead)"
         category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;color name=&quot;candidate_normal&quot;>#FF000000&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
+        priority="9"
+        summary="Memory allocations within drawing code"
+        explanation="You should avoid allocating objects during a drawing or layout operation. These are called frequently, so a smooth UI can be interrupted by garbage collection pauses caused by the object allocations.&#xA;&#xA;The way this is generally handled is to allocate the needed objects up front and to reuse them for each drawing operation.&#xA;&#xA;Some methods allocate memory on your behalf (such as `Bitmap.create`), and these should be handled in the same way."
+        errorLine1="        Rect padding = new Rect();"
+        errorLine2="                       ~~~~~~~~~~">
         <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/colors.xml"
-            line="21"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.color.candidate_recommended` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;color name=&quot;candidate_recommended&quot;>#FFE35900&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/colors.xml"
-            line="22"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.color.candidate_other` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;color name=&quot;candidate_other&quot;>#ff808080&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/colors.xml"
-            line="23"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.color.candidate_background` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;color name=&quot;candidate_background&quot;>#bbffffff&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/colors.xml"
-            line="24"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.dimen.key_height` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;dimen name=&quot;key_height&quot;>50dip&lt;/dimen>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/dimens.xml"
-            line="22"
-            column="12"/>
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values-land/dimens.xml"
-            line="22"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.dimen.candidate_font_height` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;dimen name=&quot;candidate_font_height&quot;>16sp&lt;/dimen>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/dimens.xml"
-            line="23"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.dimen.candidate_vertical_padding` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;dimen name=&quot;candidate_vertical_padding&quot;>6sp&lt;/dimen>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/dimens.xml"
-            line="24"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.xml.ime_preferences` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="&lt;PreferenceScreen xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-        errorLine2="^"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/xml/ime_preferences.xml"
-            line="17"
-            column="1"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.layout.input` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="&lt;com.example.android.softkeyboard.LatinKeyboardView"
-        errorLine2="^"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/layout/input.xml"
-            line="21"
-            column="1"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.xml.qwerty` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="&lt;Keyboard xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-        errorLine2="^"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/xml/qwerty.xml"
-            line="21"
-            column="1"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.string.word_separators` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;string name=&quot;word_separators&quot;>\u0020.,;:!?\n()[]*&amp;amp;@{}/&amp;lt;&amp;gt;_+=|&amp;quot;&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/strings.xml"
-            line="25"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.string.label_go_key` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;string name=&quot;label_go_key&quot;>Go&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/strings.xml"
-            line="28"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.string.label_next_key` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;string name=&quot;label_next_key&quot;>Next&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/strings.xml"
-            line="29"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.string.label_send_key` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;string name=&quot;label_send_key&quot;>Send&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/strings.xml"
-            line="30"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.string.language_selection_title` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;string name=&quot;language_selection_title&quot;>Input languages&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/strings.xml"
-            line="38"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.string.select_language` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="    &lt;string name=&quot;select_language&quot;>Select input languages&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/strings.xml"
-            line="39"
-            column="13"/>
+            file="/home/marcosieben16/app_test/app/src/main/java/com/example/android/softkeyboard/CandidateView.java"
+            line="142"
+            column="24"/>
     </issue>
 
     <issue
@@ -363,148 +223,9 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~"
         quickfix="studio">
         <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/values/strings.xml"
+            file="/home/marcosieben16/app_test/app/src/main/res/values/strings.xml"
             line="40"
             column="13"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.drawable.sym_keyboard_delete` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-hdpi/sym_keyboard_delete.png"/>
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-mdpi/sym_keyboard_delete.png"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.drawable.sym_keyboard_done` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-hdpi/sym_keyboard_done.png"/>
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-mdpi/sym_keyboard_done.png"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.drawable.sym_keyboard_language_switch` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-hdpi/sym_keyboard_language_switch.png"/>
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-mdpi/sym_keyboard_language_switch.png"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.drawable.sym_keyboard_return` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-hdpi/sym_keyboard_return.png"/>
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-mdpi/sym_keyboard_return.png"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.drawable.sym_keyboard_search` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-hdpi/sym_keyboard_search.png"/>
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-mdpi/sym_keyboard_search.png"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.drawable.sym_keyboard_shift` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-hdpi/sym_keyboard_shift.png"/>
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-mdpi/sym_keyboard_shift.png"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.drawable.sym_keyboard_space` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-hdpi/sym_keyboard_space.png"/>
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/drawable-mdpi/sym_keyboard_space.png"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.xml.symbols` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="&lt;Keyboard xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-        errorLine2="^"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/xml/symbols.xml"
-            line="21"
-            column="1"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.xml.symbols_shift` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds."
-        errorLine1="&lt;Keyboard xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-        errorLine2="^"
-        quickfix="studio">
-        <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res/xml/symbols_shift.xml"
-            line="21"
-            column="1"/>
     </issue>
 
     <issue
@@ -521,7 +242,7 @@
         errorLine2="    ^"
         quickfix="studio">
         <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/AndroidManifest.xml"
+            file="/home/marcosieben16/app_test/app/src/main/AndroidManifest.xml"
             line="3"
             column="5"/>
     </issue>
@@ -537,7 +258,7 @@
         url="http://developer.android.com/guide/practices/screens_support.html"
         urls="http://developer.android.com/guide/practices/screens_support.html">
         <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/res"/>
+            file="/home/marcosieben16/app_test/app/src/main/res"/>
     </issue>
 
     <issue
@@ -554,9 +275,25 @@
         errorLine2="    ^"
         quickfix="studio">
         <location
-            file="/home/marcosieben16/SoftKeyboard/app/src/main/AndroidManifest.xml"
+            file="/home/marcosieben16/app_test/app/src/main/AndroidManifest.xml"
             line="3"
             column="5"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        severity="Warning"
+        message="Custom view `CandidateView` overrides `onTouchEvent` but not `performClick`"
+        category="Accessibility"
+        priority="6"
+        summary="Accessibility in Custom Views"
+        explanation="If a `View` that overrides `onTouchEvent` or uses an `OnTouchListener` does not also implement `performClick` and call it when clicks are detected, the `View` may not handle accessibility actions properly. Logic handling the click actions should ideally be placed in `View#performClick` as some accessibility services invoke `performClick` when a click action should occur."
+        errorLine1="    public boolean onTouchEvent(MotionEvent me) {"
+        errorLine2="                   ~~~~~~~~~~~~">
+        <location
+            file="/home/marcosieben16/app_test/app/src/main/java/com/example/android/softkeyboard/CandidateView.java"
+            line="262"
+            column="20"/>
     </issue>
 
 </issues>

@@ -173,23 +173,29 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 33 warnings</span>
+      <span class="mdl-layout-title">Lint Report: 3 errors and 14 warnings</span>
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-Check performed at Mon Jun 21 07:29:44 UTC 2021      </nav>
+Check performed at Wed Jun 30 03:33:47 UTC 2021      </nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">Issue Types</span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="#overview"><i class="material-icons">dashboard</i>Overview</a>
+      <a class="mdl-navigation__link" href="#NewApi"><i class="material-icons error-icon">error</i>Calling new methods on older versions (1)</a>
       <a class="mdl-navigation__link" href="#OldTargetApi"><i class="material-icons warning-icon">warning</i>Target SDK attribute is not targeting latest version (1)</a>
       <a class="mdl-navigation__link" href="#UnusedAttribute"><i class="material-icons warning-icon">warning</i>Attribute unused on older versions (1)</a>
+      <a class="mdl-navigation__link" href="#WrongCall"><i class="material-icons error-icon">error</i>Using wrong draw/layout method (2)</a>
+      <a class="mdl-navigation__link" href="#InflateParams"><i class="material-icons warning-icon">warning</i>Layout Inflation without a Parent (1)</a>
+      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (3)</a>
       <a class="mdl-navigation__link" href="#AllowBackup"><i class="material-icons warning-icon">warning</i>AllowBackup/FullBackupContent Problems (2)</a>
-      <a class="mdl-navigation__link" href="#UnusedResources"><i class="material-icons warning-icon">warning</i>Unused resources (26)</a>
+      <a class="mdl-navigation__link" href="#DrawAllocation"><i class="material-icons warning-icon">warning</i>Memory allocations within drawing code (1)</a>
+      <a class="mdl-navigation__link" href="#UnusedResources"><i class="material-icons warning-icon">warning</i>Unused resources (1)</a>
       <a class="mdl-navigation__link" href="#MissingApplicationIcon"><i class="material-icons warning-icon">warning</i>Missing application icon (1)</a>
       <a class="mdl-navigation__link" href="#IconMissingDensityFolder"><i class="material-icons warning-icon">warning</i>Missing density folder (1)</a>
       <a class="mdl-navigation__link" href="#GoogleAppIndexingWarning"><i class="material-icons warning-icon">warning</i>Missing support for Firebase App Indexing (1)</a>
+      <a class="mdl-navigation__link" href="#ClickableViewAccessibility"><i class="material-icons warning-icon">warning</i>Accessibility in Custom Views (1)</a>
     </nav>
   </div>
   <main class="mdl-layout__content">
@@ -205,11 +211,23 @@ Check performed at Mon Jun 21 07:29:44 UTC 2021      </nav>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Correctness">Correctness</a>
 </td></tr>
 <tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
+<a href="#NewApi">NewApi</a>: Calling new methods on older versions</td></tr>
+<tr>
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#OldTargetApi">OldTargetApi</a>: Target SDK attribute is not targeting latest version</td></tr>
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UnusedAttribute">UnusedAttribute</a>: Attribute unused on older versions</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
+<a href="#WrongCall">WrongCall</a>: Using wrong draw/layout method</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#InflateParams">InflateParams</a>: Layout Inflation without a Parent</td></tr>
+<tr>
+<td class="countColumn">3</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Security">Security</a>
 </td></tr>
 <tr>
@@ -218,7 +236,10 @@ Check performed at Mon Jun 21 07:29:44 UTC 2021      </nav>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Performance">Performance</a>
 </td></tr>
 <tr>
-<td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#DrawAllocation">DrawAllocation</a>: Memory allocations within drawing code</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UnusedResources">UnusedResources</a>: Unused resources</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Usability:Icons">Usability:Icons</a>
 </td></tr>
@@ -233,6 +254,11 @@ Check performed at Mon Jun 21 07:29:44 UTC 2021      </nav>
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#GoogleAppIndexingWarning">GoogleAppIndexingWarning</a>: Missing support for Firebase App Indexing</td></tr>
+<tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Accessibility">Accessibility</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ClickableViewAccessibility">ClickableViewAccessibility</a>: Accessibility in Custom Views</td></tr>
 <tr><td></td><td class="categoryColumn"><a href="#MissingIssues">Disabled Checks (23)</a>
 </td></tr></table>
 <br/>              </div>
@@ -242,7 +268,61 @@ Dismiss</button>            </div>
             </div>
           </section>
 <a name="Correctness"></a>
-<a name="OldTargetApi"></a>
+<a name="NewApi"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="NewApiCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Calling new methods on older versions</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/example/android/softkeyboard/SoftKeyboard.java">../../src/main/java/com/example/android/softkeyboard/SoftKeyboard.java</a>:156</span>: <span class="message">Call requires API level 19 (current min is 16): android.view.inputmethod.InputMethodManager#shouldOfferSwitchingToNextInputMethod</span><br /><pre class="errorlines">
+<span class="lineno"> 153 </span>
+<span class="lineno"> 154 </span>    <span class="keyword">private</span> <span class="keyword">void</span> setLatinKeyboard(LatinKeyboard nextKeyboard) {
+<span class="lineno"> 155 </span>        <span class="keyword">final</span> <span class="keyword">boolean</span> shouldSupportLanguageSwitchKey =
+<span class="caretline"><span class="lineno"> 156 </span>                mInputMethodManager.<span class="error">shouldOfferSwitchingToNextInputMethod</span>(getToken());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 157 </span>        nextKeyboard.setLanguageSwitchKeyVisibility(shouldSupportLanguageSwitchKey);
+<span class="lineno"> 158 </span>        mInputView.setKeyboard(nextKeyboard);
+<span class="lineno"> 159 </span>    }
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationNewApi" style="display: none;">
+This check scans through all the Android API calls in the application and warns about any calls that are not available on <b>all</b> versions targeted by this application (according to its minimum SDK attribute in the manifest).<br/>
+<br/>
+If you really want to use this API and don't need to support older devices just set the <code>minSdkVersion</code> in your <code>build.gradle</code> or <code>AndroidManifest.xml</code> files.<br/>
+<br/>
+If your code is <b>deliberately</b> accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the <code>@TargetApi</code> annotation specifying the local minimum SDK to apply, such as <code>@TargetApi(11)</code>, such that this check considers 11 rather than your manifest file's minimum SDK as the required API level.<br/>
+<br/>
+If you are deliberately setting <code>android:</code> attributes in style definitions, make sure you place this in a <code>values-v</code><i>NN</i> folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.<br/>
+<br/>
+Similarly, you can use tools:targetApi="11" in an XML file to indicate that the element will only be inflated in an adequate context.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "NewApi" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">NewApi</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Error</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationNewApiLink" onclick="reveal('explanationNewApi');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="NewApiCardLink" onclick="hideid('NewApiCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="OldTargetApi"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="OldTargetApiCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
   <div class="mdl-card__title">
@@ -342,6 +422,171 @@ To suppress this error, use the issue id "UnusedAttribute" as explained in the <
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="UnusedAttributeCardLink" onclick="hideid('UnusedAttributeCard');">
 Dismiss</button>            </div>
             </div>
+          </section><a name="WrongCall"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="WrongCallCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Using wrong draw/layout method</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/example/android/softkeyboard/CandidateView.java">../../src/main/java/com/example/android/softkeyboard/CandidateView.java</a>:249</span>: <span class="message">Suspicious method call; should probably call "<code>draw</code>" rather than "<code>onDraw</code>"</span><br /><pre class="errorlines">
+<span class="lineno"> 246 </span>        scrollTo(<span class="number">0</span>, <span class="number">0</span>);
+<span class="lineno"> 247 </span>        mTargetScrollX = <span class="number">0</span>;
+<span class="lineno"> 248 </span>        <span class="comment">// Compute the total width</span>
+<span class="caretline"><span class="lineno"> 249 </span>        <span class="error">onDraw</span>(<span class="keyword">null</span>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 250 </span>        invalidate();
+<span class="lineno"> 251 </span>        requestLayout();
+<span class="lineno"> 252 </span>    }
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/example/android/softkeyboard/CandidateView.java">../../src/main/java/com/example/android/softkeyboard/CandidateView.java</a>:310</span>: <span class="message">Suspicious method call; should probably call "<code>draw</code>" rather than "<code>onDraw</code>"</span><br /><pre class="errorlines">
+<span class="lineno"> 307 </span>    <span class="keyword">public</span> <span class="keyword">void</span> takeSuggestionAt(<span class="keyword">float</span> x) {
+<span class="lineno"> 308 </span>        mTouchX = (<span class="keyword">int</span>) x;
+<span class="lineno"> 309 </span>        <span class="comment">// To detect candidate</span>
+<span class="caretline"><span class="lineno"> 310 </span>        <span class="error">onDraw</span>(<span class="keyword">null</span>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 311 </span>        <span class="keyword">if</span> (mSelectedIndex >= <span class="number">0</span>) {
+<span class="lineno"> 312 </span>            mService.pickSuggestionManually(mSelectedIndex);
+<span class="lineno"> 313 </span>        }
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationWrongCall" style="display: none;">
+Custom views typically need to call <code>measure()</code> on their children, not <code>onMeasure</code>. Ditto for onDraw, onLayout, etc.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "WrongCall" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">WrongCall</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Error</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationWrongCallLink" onclick="reveal('explanationWrongCall');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="WrongCallCardLink" onclick="hideid('WrongCallCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="InflateParams"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="InflateParamsCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Layout Inflation without a Parent</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/example/android/softkeyboard/SoftKeyboard.java">../../src/main/java/com/example/android/softkeyboard/SoftKeyboard.java</a>:148</span>: <span class="message">Avoid passing <code>null</code> as the view root (needed to resolve layout parameters on the inflated layout's root element)</span><br /><pre class="errorlines">
+<span class="lineno"> 145 </span><span class="javadoc">     */</span>
+<span class="lineno"> 146 </span>    <span class="annotation">@Override</span> <span class="keyword">public</span> View onCreateInputView() {
+<span class="lineno"> 147 </span>        mInputView = (LatinKeyboardView) getLayoutInflater().inflate(
+<span class="caretline"><span class="lineno"> 148 </span>                R.layout.input, <span class="warning"><span class="keyword">null</span></span>);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 149 </span>        mInputView.setOnKeyboardActionListener(<span class="keyword">this</span>);
+<span class="lineno"> 150 </span>        setLatinKeyboard(mQwertyKeyboard);
+<span class="lineno"> 151 </span>        <span class="keyword">return</span> mInputView;
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationInflateParams" style="display: none;">
+When inflating a layout, avoid passing in null as the parent view, since otherwise any layout parameters on the root of the inflated layout will be ignored.<br/><div class="moreinfo">More info: <a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended">http://www.doubleencore.com/2013/05/layout-inflation-as-intended</a>
+</div>To suppress this error, use the issue id "InflateParams" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">InflateParams</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 5/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationInflateParamsLink" onclick="reveal('explanationInflateParams');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="InflateParamsCardLink" onclick="hideid('InflateParamsCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="GradleDependency"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="GradleDependencyCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Obsolete Gradle Dependency</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../build.gradle">../../build.gradle</a>:31</span>: <span class="message">A newer version of com.android.support.constraint:constraint-layout than 1.1.2 is available: 2.0.4</span><br /><pre class="errorlines">
+<span class="lineno"> 28 </span>
+<span class="lineno"> 29 </span>
+<span class="lineno"> 30 </span>dependencies {
+<span class="caretline"><span class="lineno"> 31 </span>    <span class="warning">implementation <span class="string">'com.android.support.constraint:constraint-layout:1.1.2'</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 32 </span>    implementation <span class="string">'com.android.support:appcompat-v7:25.3.1'</span>
+<span class="lineno"> 33 </span>
+<span class="lineno"> 34 </span>    <span class="comment">/*implementation 'com.android.support:support-annotations:28.0.0 '*/</span></pre>
+
+<span class="location"><a href="../../build.gradle">../../build.gradle</a>:32</span>: <span class="message">A newer version of com.android.support:appcompat-v7 than 25.3.1 is available: 25.4.0</span><br /><pre class="errorlines">
+<span class="lineno"> 29 </span>
+<span class="lineno"> 30 </span>dependencies {
+<span class="lineno"> 31 </span>    implementation <span class="string">'com.android.support.constraint:constraint-layout:1.1.2'</span>
+<span class="caretline"><span class="lineno"> 32 </span>    <span class="warning">implementation <span class="string">'com.android.support:appcompat-v7:25.3.1'</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 33 </span>
+<span class="lineno"> 34 </span>    <span class="comment">/*implementation 'com.android.support:support-annotations:28.0.0 '*/</span>
+</pre>
+
+<span class="location"><a href="../../build.gradle">../../build.gradle</a>:36</span>: <span class="message">A newer version of androidx.annotation:annotation than 1.0.0 is available: 1.2.0</span><br /><pre class="errorlines">
+<span class="lineno"> 33 </span>
+<span class="lineno"> 34 </span>    <span class="comment">/*implementation 'com.android.support:support-annotations:28.0.0 '*/</span>
+<span class="lineno"> 35 </span>
+<span class="caretline"><span class="lineno"> 36 </span>    <span class="warning">implementation  <span class="string">'androidx.annotation:annotation:1.0.0'</span> </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 37 </span>}
+<span class="lineno"> 38 </span>
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationGradleDependency" style="display: none;">
+This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "GradleDependency" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">GradleDependency</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 4/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationGradleDependencyLink" onclick="reveal('explanationGradleDependency');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="GradleDependencyCardLink" onclick="hideid('GradleDependencyCard');">
+Dismiss</button>            </div>
+            </div>
           </section>
 <a name="Security"></a>
 <a name="AllowBackup"></a>
@@ -410,7 +655,56 @@ Dismiss</button>            </div>
             </div>
           </section>
 <a name="Performance"></a>
-<a name="UnusedResources"></a>
+<a name="DrawAllocation"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="DrawAllocationCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Memory allocations within drawing code</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/example/android/softkeyboard/CandidateView.java">../../src/main/java/com/example/android/softkeyboard/CandidateView.java</a>:142</span>: <span class="message">Avoid object allocations during draw/layout operations (preallocate and reuse instead)</span><br /><pre class="errorlines">
+<span class="lineno"> 139 </span>        
+<span class="lineno"> 140 </span>        <span class="comment">// Get the desired height of the icon menu view (last row of items does</span>
+<span class="lineno"> 141 </span>        <span class="comment">// not have a divider below)</span>
+<span class="caretline"><span class="lineno"> 142 </span>        Rect padding = <span class="warning"><span class="keyword">new</span> Rect()</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 143 </span>        mSelectionHighlight.getPadding(padding);
+<span class="lineno"> 144 </span>        <span class="keyword">final</span> <span class="keyword">int</span> desiredHeight = ((<span class="keyword">int</span>)mPaint.getTextSize()) + mVerticalPadding
+<span class="lineno"> 145 </span>                + padding.top + padding.bottom;
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationDrawAllocation" style="display: none;">
+You should avoid allocating objects during a drawing or layout operation. These are called frequently, so a smooth UI can be interrupted by garbage collection pauses caused by the object allocations.<br/>
+<br/>
+The way this is generally handled is to allocate the needed objects up front and to reuse them for each drawing operation.<br/>
+<br/>
+Some methods allocate memory on your behalf (such as <code>Bitmap.create</code>), and these should be handled in the same way.<br/>To suppress this error, use the issue id "DrawAllocation" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">DrawAllocation</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Performance</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 9/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationDrawAllocationLink" onclick="reveal('explanationDrawAllocation');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="DrawAllocationCardLink" onclick="hideid('DrawAllocationCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="UnusedResources"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="UnusedResourcesCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
   <div class="mdl-card__title">
@@ -419,152 +713,6 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/res/values/colors.xml">../../src/main/res/values/colors.xml</a>:21</span>: <span class="message">The resource <code>R.color.candidate_normal</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 18 </span><span class="comment">*/
-</span><span class="lineno"> 19 </span><span class="comment">--></span>
-<span class="lineno"> 20 </span><span class="tag">&lt;resources></span>
-<span class="caretline"><span class="lineno"> 21 </span>    <span class="tag">&lt;color</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"candidate_normal"</span></span>>#FF000000<span class="tag">&lt;/color></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 22 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_recommended"</span>>#FFE35900<span class="tag">&lt;/color></span>
-<span class="lineno"> 23 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_other"</span>>#ff808080<span class="tag">&lt;/color></span>
-<span class="lineno"> 24 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_background"</span>>#bbffffff<span class="tag">&lt;/color></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/colors.xml">../../src/main/res/values/colors.xml</a>:22</span>: <span class="message">The resource <code>R.color.candidate_recommended</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 19 </span><span class="comment">--></span>
-<span class="lineno"> 20 </span><span class="tag">&lt;resources></span>
-<span class="lineno"> 21 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_normal"</span>>#FF000000<span class="tag">&lt;/color></span>
-<span class="caretline"><span class="lineno"> 22 </span>    <span class="tag">&lt;color</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"candidate_recommended"</span></span>>#FFE35900<span class="tag">&lt;/color></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 23 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_other"</span>>#ff808080<span class="tag">&lt;/color></span>
-<span class="lineno"> 24 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_background"</span>>#bbffffff<span class="tag">&lt;/color></span>
-<span class="lineno"> 25 </span><span class="tag">&lt;/resources></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/colors.xml">../../src/main/res/values/colors.xml</a>:23</span>: <span class="message">The resource <code>R.color.candidate_other</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 20 </span><span class="tag">&lt;resources></span>
-<span class="lineno"> 21 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_normal"</span>>#FF000000<span class="tag">&lt;/color></span>
-<span class="lineno"> 22 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_recommended"</span>>#FFE35900<span class="tag">&lt;/color></span>
-<span class="caretline"><span class="lineno"> 23 </span>    <span class="tag">&lt;color</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"candidate_other"</span></span>>#ff808080<span class="tag">&lt;/color></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 24 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_background"</span>>#bbffffff<span class="tag">&lt;/color></span>
-<span class="lineno"> 25 </span><span class="tag">&lt;/resources></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/colors.xml">../../src/main/res/values/colors.xml</a>:24</span>: <span class="message">The resource <code>R.color.candidate_background</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 21 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_normal"</span>>#FF000000<span class="tag">&lt;/color></span>
-<span class="lineno"> 22 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_recommended"</span>>#FFE35900<span class="tag">&lt;/color></span>
-<span class="lineno"> 23 </span>    <span class="tag">&lt;color</span><span class="attribute"> name</span>=<span class="value">"candidate_other"</span>>#ff808080<span class="tag">&lt;/color></span>
-<span class="caretline"><span class="lineno"> 24 </span>    <span class="tag">&lt;color</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"candidate_background"</span></span>>#bbffffff<span class="tag">&lt;/color></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 25 </span><span class="tag">&lt;/resources></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/dimens.xml">../../src/main/res/values/dimens.xml</a>:22</span>: <span class="message">The resource <code>R.dimen.key_height</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 19 </span><span class="comment">--></span>
-<span class="lineno"> 20 </span>
-<span class="lineno"> 21 </span><span class="tag">&lt;resources></span>
-<span class="caretline"><span class="lineno"> 22 </span>    <span class="tag">&lt;dimen</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"key_height"</span></span>>50dip<span class="tag">&lt;/dimen></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 23 </span>    <span class="tag">&lt;dimen</span><span class="attribute"> name</span>=<span class="value">"candidate_font_height"</span>>16sp<span class="tag">&lt;/dimen></span>
-<span class="lineno"> 24 </span>    <span class="tag">&lt;dimen</span><span class="attribute"> name</span>=<span class="value">"candidate_vertical_padding"</span>>6sp<span class="tag">&lt;/dimen></span>
-<span class="lineno"> 25 </span><span class="tag">&lt;/resources></span></pre>
-
-<ul></ul><button id="Location5DivLink" onclick="reveal('Location5Div');" />+ 1 Additional Locations...</button>
-<div id="Location5Div" style="display: none">
-Additional locations: <ul>
-<li> <span class="location"><a href="../../src/main/res/values-land/dimens.xml">../../src/main/res/values-land/dimens.xml</a>:22</span>
-</ul>
-</div><br/><br/>
-<button class="mdl-button mdl-js-button mdl-button--primary" id="UnusedResourcesDivLink" onclick="reveal('UnusedResourcesDiv');" />+ 21 More Occurrences...</button>
-<div id="UnusedResourcesDiv" style="display: none">
-<span class="location"><a href="../../src/main/res/values/dimens.xml">../../src/main/res/values/dimens.xml</a>:23</span>: <span class="message">The resource <code>R.dimen.candidate_font_height</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 20 </span>
-<span class="lineno"> 21 </span><span class="tag">&lt;resources></span>
-<span class="lineno"> 22 </span>    <span class="tag">&lt;dimen</span><span class="attribute"> name</span>=<span class="value">"key_height"</span>>50dip<span class="tag">&lt;/dimen></span>
-<span class="caretline"><span class="lineno"> 23 </span>    <span class="tag">&lt;dimen</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"candidate_font_height"</span></span>>16sp<span class="tag">&lt;/dimen></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 24 </span>    <span class="tag">&lt;dimen</span><span class="attribute"> name</span>=<span class="value">"candidate_vertical_padding"</span>>6sp<span class="tag">&lt;/dimen></span>
-<span class="lineno"> 25 </span><span class="tag">&lt;/resources></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/dimens.xml">../../src/main/res/values/dimens.xml</a>:24</span>: <span class="message">The resource <code>R.dimen.candidate_vertical_padding</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 21 </span><span class="tag">&lt;resources></span>
-<span class="lineno"> 22 </span>    <span class="tag">&lt;dimen</span><span class="attribute"> name</span>=<span class="value">"key_height"</span>>50dip<span class="tag">&lt;/dimen></span>
-<span class="lineno"> 23 </span>    <span class="tag">&lt;dimen</span><span class="attribute"> name</span>=<span class="value">"candidate_font_height"</span>>16sp<span class="tag">&lt;/dimen></span>
-<span class="caretline"><span class="lineno"> 24 </span>    <span class="tag">&lt;dimen</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"candidate_vertical_padding"</span></span>>6sp<span class="tag">&lt;/dimen></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 25 </span><span class="tag">&lt;/resources></span></pre>
-
-<span class="location"><a href="../../src/main/res/xml/ime_preferences.xml">../../src/main/res/xml/ime_preferences.xml</a>:17</span>: <span class="message">The resource <code>R.xml.ime_preferences</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 14 </span><span class="comment">     limitations under the License.
-</span><span class="lineno"> 15 </span><span class="comment">--></span>
-<span class="lineno"> 16 </span>
-<span class="caretline"><span class="lineno"> 17 </span><span class="warning"><span class="tag">&lt;PreferenceScreen</span><span class="attribute"> </span><span class="prefix">xmlns:</span><span class="attribute">android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 18 </span>        <span class="prefix">android:</span><span class="attribute">title</span>=<span class="value">"@string/settings_name"</span>>
-<span class="lineno"> 19 </span><span class="tag">&lt;/PreferenceScreen></span>
-</pre>
-
-<span class="location"><a href="../../src/main/res/layout/input.xml">../../src/main/res/layout/input.xml</a>:21</span>: <span class="message">The resource <code>R.layout.input</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 18 </span><span class="comment">*/
-</span><span class="lineno"> 19 </span><span class="comment">--></span>
-<span class="lineno"> 20 </span>
-<span class="caretline"><span class="lineno"> 21 </span><span class="warning"><span class="tag">&lt;com.example.android.softkeyboard.LatinKeyboardView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno"> 22 </span><span class="attribute">        </span><span class="prefix">xmlns:</span><span class="attribute">android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>
-<span class="lineno"> 23 </span>        <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/keyboard"</span>
-<span class="lineno"> 24 </span>        <span class="prefix">android:</span><span class="attribute">layout_alignParentBottom</span>=<span class="value">"true"</span></pre>
-
-<span class="location"><a href="../../src/main/res/xml/qwerty.xml">../../src/main/res/xml/qwerty.xml</a>:21</span>: <span class="message">The resource <code>R.xml.qwerty</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 18 </span><span class="comment">*/
-</span><span class="lineno"> 19 </span><span class="comment">--></span>
-<span class="lineno"> 20 </span>
-<span class="caretline"><span class="lineno"> 21 </span><span class="warning"><span class="tag">&lt;Keyboard</span><span class="attribute"> </span><span class="prefix">xmlns:</span><span class="attribute">android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 22 </span>    <span class="prefix">android:</span><span class="attribute">keyWidth</span>=<span class="value">"10%p"</span>
-<span class="lineno"> 23 </span>    <span class="prefix">android:</span><span class="attribute">horizontalGap</span>=<span class="value">"0px"</span>
-<span class="lineno"> 24 </span>    <span class="prefix">android:</span><span class="attribute">verticalGap</span>=<span class="value">"0px"</span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:25</span>: <span class="message">The resource <code>R.string.word_separators</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 22 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"ime_name"</span>>Sample Soft Keyboard<span class="tag">&lt;/string></span>
-<span class="lineno"> 23 </span>
-<span class="lineno"> 24 </span>    <span class="comment">&lt;!-- Symbols that are commonly considered word separators in this language --></span>
-<span class="caretline"><span class="lineno"> 25 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"word_separators"</span></span>>\u0020.,;:!?\n()[]*&amp;amp;@{}/&amp;lt;&amp;gt;_+=|&amp;quot;<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 26 </span>    
-<span class="lineno"> 27 </span>    <span class="comment">&lt;!-- Labels on soft keys --></span>
-<span class="lineno"> 28 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"label_go_key"</span>>Go<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:28</span>: <span class="message">The resource <code>R.string.label_go_key</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 25 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"word_separators"</span>>\u0020.,;:!?\n()[]*&amp;amp;@{}/&amp;lt;&amp;gt;_+=|&amp;quot;<span class="tag">&lt;/string></span>
-<span class="lineno"> 26 </span>    
-<span class="lineno"> 27 </span>    <span class="comment">&lt;!-- Labels on soft keys --></span>
-<span class="caretline"><span class="lineno"> 28 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"label_go_key"</span></span>>Go<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 29 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"label_next_key"</span>>Next<span class="tag">&lt;/string></span>
-<span class="lineno"> 30 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"label_send_key"</span>>Send<span class="tag">&lt;/string></span>
-</pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:29</span>: <span class="message">The resource <code>R.string.label_next_key</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 26 </span>    
-<span class="lineno"> 27 </span>    <span class="comment">&lt;!-- Labels on soft keys --></span>
-<span class="lineno"> 28 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"label_go_key"</span>>Go<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 29 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"label_next_key"</span></span>>Next<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 30 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"label_send_key"</span>>Send<span class="tag">&lt;/string></span>
-<span class="lineno"> 31 </span>
-<span class="lineno"> 32 </span>    <span class="comment">&lt;!-- Labels for subtype --></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:30</span>: <span class="message">The resource <code>R.string.label_send_key</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 27 </span>    <span class="comment">&lt;!-- Labels on soft keys --></span>
-<span class="lineno"> 28 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"label_go_key"</span>>Go<span class="tag">&lt;/string></span>
-<span class="lineno"> 29 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"label_next_key"</span>>Next<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 30 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"label_send_key"</span></span>>Send<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 31 </span>
-<span class="lineno"> 32 </span>    <span class="comment">&lt;!-- Labels for subtype --></span>
-<span class="lineno"> 33 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"label_subtype_generic"</span>>%s<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:38</span>: <span class="message">The resource <code>R.string.language_selection_title</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 35 </span>
-<span class="lineno"> 36 </span>    <span class="comment">&lt;!-- Titles for ImePreference --></span>
-<span class="lineno"> 37 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"settings_name"</span>>Sample Soft Keyboard Settings<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 38 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"language_selection_title"</span></span>>Input languages<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 39 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"select_language"</span>>Select input languages<span class="tag">&lt;/string></span>
-<span class="lineno"> 40 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"general_category"</span>>General<span class="tag">&lt;/string></span>
-<span class="lineno"> 41 </span><span class="tag">&lt;/resources></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:39</span>: <span class="message">The resource <code>R.string.select_language</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 36 </span>    <span class="comment">&lt;!-- Titles for ImePreference --></span>
-<span class="lineno"> 37 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"settings_name"</span>>Sample Soft Keyboard Settings<span class="tag">&lt;/string></span>
-<span class="lineno"> 38 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"language_selection_title"</span>>Input languages<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 39 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"select_language"</span></span>>Select input languages<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 40 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"general_category"</span>>General<span class="tag">&lt;/string></span>
-<span class="lineno"> 41 </span><span class="tag">&lt;/resources></span>
-</pre>
-
 <span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:40</span>: <span class="message">The resource <code>R.string.general_category</code> appears to be unused</span><br /><pre class="errorlines">
 <span class="lineno"> 37 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"settings_name"</span>>Sample Soft Keyboard Settings<span class="tag">&lt;/string></span>
 <span class="lineno"> 38 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"language_selection_title"</span>>Input languages<span class="tag">&lt;/string></span>
@@ -573,109 +721,6 @@ Additional locations: <ul>
 <span class="lineno"> 41 </span><span class="tag">&lt;/resources></span>
 </pre>
 
-<span class="location"><a href="../../src/main/res/drawable-hdpi/sym_keyboard_delete.png">../../src/main/res/drawable-hdpi/sym_keyboard_delete.png</a></span>: <span class="message">The resource <code>R.drawable.sym_keyboard_delete</code> appears to be unused</span><br />
-<ul></ul><button id="Location18DivLink" onclick="reveal('Location18Div');" />+ 1 Additional Locations...</button>
-<div id="Location18Div" style="display: none">
-Additional locations: <ul>
-<li> <span class="location"><a href="../../src/main/res/drawable-mdpi/sym_keyboard_delete.png">../../src/main/res/drawable-mdpi/sym_keyboard_delete.png</a></span>
-</ul>
-</div><br/><br/>
-<table>
-<tr><td><a href="../../src/main/res/drawable-mdpi/sym_keyboard_delete.png"><img border="0" align="top" src="../../src/main/res/drawable-mdpi/sym_keyboard_delete.png" /></a>
-</td><td><a href="../../src/main/res/drawable-hdpi/sym_keyboard_delete.png"><img border="0" align="top" src="../../src/main/res/drawable-hdpi/sym_keyboard_delete.png" /></a>
-</td></tr><tr><th>mdpi</th><th>hdpi</th></tr>
-</table>
-<span class="location"><a href="../../src/main/res/drawable-hdpi/sym_keyboard_done.png">../../src/main/res/drawable-hdpi/sym_keyboard_done.png</a></span>: <span class="message">The resource <code>R.drawable.sym_keyboard_done</code> appears to be unused</span><br />
-<ul></ul><button id="Location19DivLink" onclick="reveal('Location19Div');" />+ 1 Additional Locations...</button>
-<div id="Location19Div" style="display: none">
-Additional locations: <ul>
-<li> <span class="location"><a href="../../src/main/res/drawable-mdpi/sym_keyboard_done.png">../../src/main/res/drawable-mdpi/sym_keyboard_done.png</a></span>
-</ul>
-</div><br/><br/>
-<table>
-<tr><td><a href="../../src/main/res/drawable-mdpi/sym_keyboard_done.png"><img border="0" align="top" src="../../src/main/res/drawable-mdpi/sym_keyboard_done.png" /></a>
-</td><td><a href="../../src/main/res/drawable-hdpi/sym_keyboard_done.png"><img border="0" align="top" src="../../src/main/res/drawable-hdpi/sym_keyboard_done.png" /></a>
-</td></tr><tr><th>mdpi</th><th>hdpi</th></tr>
-</table>
-<span class="location"><a href="../../src/main/res/drawable-hdpi/sym_keyboard_language_switch.png">../../src/main/res/drawable-hdpi/sym_keyboard_language_switch.png</a></span>: <span class="message">The resource <code>R.drawable.sym_keyboard_language_switch</code> appears to be unused</span><br />
-<ul></ul><button id="Location20DivLink" onclick="reveal('Location20Div');" />+ 1 Additional Locations...</button>
-<div id="Location20Div" style="display: none">
-Additional locations: <ul>
-<li> <span class="location"><a href="../../src/main/res/drawable-mdpi/sym_keyboard_language_switch.png">../../src/main/res/drawable-mdpi/sym_keyboard_language_switch.png</a></span>
-</ul>
-</div><br/><br/>
-<table>
-<tr><td><a href="../../src/main/res/drawable-mdpi/sym_keyboard_language_switch.png"><img border="0" align="top" src="../../src/main/res/drawable-mdpi/sym_keyboard_language_switch.png" /></a>
-</td><td><a href="../../src/main/res/drawable-hdpi/sym_keyboard_language_switch.png"><img border="0" align="top" src="../../src/main/res/drawable-hdpi/sym_keyboard_language_switch.png" /></a>
-</td></tr><tr><th>mdpi</th><th>hdpi</th></tr>
-</table>
-<span class="location"><a href="../../src/main/res/drawable-hdpi/sym_keyboard_return.png">../../src/main/res/drawable-hdpi/sym_keyboard_return.png</a></span>: <span class="message">The resource <code>R.drawable.sym_keyboard_return</code> appears to be unused</span><br />
-<ul></ul><button id="Location21DivLink" onclick="reveal('Location21Div');" />+ 1 Additional Locations...</button>
-<div id="Location21Div" style="display: none">
-Additional locations: <ul>
-<li> <span class="location"><a href="../../src/main/res/drawable-mdpi/sym_keyboard_return.png">../../src/main/res/drawable-mdpi/sym_keyboard_return.png</a></span>
-</ul>
-</div><br/><br/>
-<table>
-<tr><td><a href="../../src/main/res/drawable-mdpi/sym_keyboard_return.png"><img border="0" align="top" src="../../src/main/res/drawable-mdpi/sym_keyboard_return.png" /></a>
-</td><td><a href="../../src/main/res/drawable-hdpi/sym_keyboard_return.png"><img border="0" align="top" src="../../src/main/res/drawable-hdpi/sym_keyboard_return.png" /></a>
-</td></tr><tr><th>mdpi</th><th>hdpi</th></tr>
-</table>
-<span class="location"><a href="../../src/main/res/drawable-hdpi/sym_keyboard_search.png">../../src/main/res/drawable-hdpi/sym_keyboard_search.png</a></span>: <span class="message">The resource <code>R.drawable.sym_keyboard_search</code> appears to be unused</span><br />
-<ul></ul><button id="Location22DivLink" onclick="reveal('Location22Div');" />+ 1 Additional Locations...</button>
-<div id="Location22Div" style="display: none">
-Additional locations: <ul>
-<li> <span class="location"><a href="../../src/main/res/drawable-mdpi/sym_keyboard_search.png">../../src/main/res/drawable-mdpi/sym_keyboard_search.png</a></span>
-</ul>
-</div><br/><br/>
-<table>
-<tr><td><a href="../../src/main/res/drawable-mdpi/sym_keyboard_search.png"><img border="0" align="top" src="../../src/main/res/drawable-mdpi/sym_keyboard_search.png" /></a>
-</td><td><a href="../../src/main/res/drawable-hdpi/sym_keyboard_search.png"><img border="0" align="top" src="../../src/main/res/drawable-hdpi/sym_keyboard_search.png" /></a>
-</td></tr><tr><th>mdpi</th><th>hdpi</th></tr>
-</table>
-<span class="location"><a href="../../src/main/res/drawable-hdpi/sym_keyboard_shift.png">../../src/main/res/drawable-hdpi/sym_keyboard_shift.png</a></span>: <span class="message">The resource <code>R.drawable.sym_keyboard_shift</code> appears to be unused</span><br />
-<ul></ul><button id="Location23DivLink" onclick="reveal('Location23Div');" />+ 1 Additional Locations...</button>
-<div id="Location23Div" style="display: none">
-Additional locations: <ul>
-<li> <span class="location"><a href="../../src/main/res/drawable-mdpi/sym_keyboard_shift.png">../../src/main/res/drawable-mdpi/sym_keyboard_shift.png</a></span>
-</ul>
-</div><br/><br/>
-<table>
-<tr><td><a href="../../src/main/res/drawable-mdpi/sym_keyboard_shift.png"><img border="0" align="top" src="../../src/main/res/drawable-mdpi/sym_keyboard_shift.png" /></a>
-</td><td><a href="../../src/main/res/drawable-hdpi/sym_keyboard_shift.png"><img border="0" align="top" src="../../src/main/res/drawable-hdpi/sym_keyboard_shift.png" /></a>
-</td></tr><tr><th>mdpi</th><th>hdpi</th></tr>
-</table>
-<span class="location"><a href="../../src/main/res/drawable-hdpi/sym_keyboard_space.png">../../src/main/res/drawable-hdpi/sym_keyboard_space.png</a></span>: <span class="message">The resource <code>R.drawable.sym_keyboard_space</code> appears to be unused</span><br />
-<ul></ul><button id="Location24DivLink" onclick="reveal('Location24Div');" />+ 1 Additional Locations...</button>
-<div id="Location24Div" style="display: none">
-Additional locations: <ul>
-<li> <span class="location"><a href="../../src/main/res/drawable-mdpi/sym_keyboard_space.png">../../src/main/res/drawable-mdpi/sym_keyboard_space.png</a></span>
-</ul>
-</div><br/><br/>
-<table>
-<tr><td><a href="../../src/main/res/drawable-mdpi/sym_keyboard_space.png"><img border="0" align="top" src="../../src/main/res/drawable-mdpi/sym_keyboard_space.png" /></a>
-</td><td><a href="../../src/main/res/drawable-hdpi/sym_keyboard_space.png"><img border="0" align="top" src="../../src/main/res/drawable-hdpi/sym_keyboard_space.png" /></a>
-</td></tr><tr><th>mdpi</th><th>hdpi</th></tr>
-</table>
-<span class="location"><a href="../../src/main/res/xml/symbols.xml">../../src/main/res/xml/symbols.xml</a>:21</span>: <span class="message">The resource <code>R.xml.symbols</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 18 </span><span class="comment">*/
-</span><span class="lineno"> 19 </span><span class="comment">--></span>
-<span class="lineno"> 20 </span>
-<span class="caretline"><span class="lineno"> 21 </span><span class="warning"><span class="tag">&lt;Keyboard</span><span class="attribute"> </span><span class="prefix">xmlns:</span><span class="attribute">android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 22 </span>    <span class="prefix">android:</span><span class="attribute">keyWidth</span>=<span class="value">"10%p"</span>
-<span class="lineno"> 23 </span>    <span class="prefix">android:</span><span class="attribute">horizontalGap</span>=<span class="value">"0px"</span>
-<span class="lineno"> 24 </span>    <span class="prefix">android:</span><span class="attribute">verticalGap</span>=<span class="value">"0px"</span></pre>
-
-<span class="location"><a href="../../src/main/res/xml/symbols_shift.xml">../../src/main/res/xml/symbols_shift.xml</a>:21</span>: <span class="message">The resource <code>R.xml.symbols_shift</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 18 </span><span class="comment">*/
-</span><span class="lineno"> 19 </span><span class="comment">--></span>
-<span class="lineno"> 20 </span>
-<span class="caretline"><span class="lineno"> 21 </span><span class="warning"><span class="tag">&lt;Keyboard</span><span class="attribute"> </span><span class="prefix">xmlns:</span><span class="attribute">android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 22 </span>    <span class="prefix">android:</span><span class="attribute">keyWidth</span>=<span class="value">"10%p"</span>
-<span class="lineno"> 23 </span>    <span class="prefix">android:</span><span class="attribute">horizontalGap</span>=<span class="value">"0px"</span>
-<span class="lineno"> 24 </span>    <span class="prefix">android:</span><span class="attribute">verticalGap</span>=<span class="value">"0px"</span></pre>
-
-</div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationUnusedResources" style="display: none;">
 Unused resources make applications larger and slow down builds.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
@@ -840,6 +885,53 @@ To suppress this error, use the issue id "GoogleAppIndexingWarning" as explained
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationGoogleAppIndexingWarningLink" onclick="reveal('explanationGoogleAppIndexingWarning');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="GoogleAppIndexingWarningCardLink" onclick="hideid('GoogleAppIndexingWarningCard');">
+Dismiss</button>            </div>
+            </div>
+          </section>
+<a name="Accessibility"></a>
+<a name="ClickableViewAccessibility"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ClickableViewAccessibilityCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Accessibility in Custom Views</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/example/android/softkeyboard/CandidateView.java">../../src/main/java/com/example/android/softkeyboard/CandidateView.java</a>:262</span>: <span class="message">Custom view <code>CandidateView</code> overrides <code>onTouchEvent</code> but not <code>performClick</code></span><br /><pre class="errorlines">
+<span class="lineno"> 259 </span>    }
+<span class="lineno"> 260 </span>    
+<span class="lineno"> 261 </span>    <span class="annotation">@Override</span>
+<span class="caretline"><span class="lineno"> 262 </span>    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="warning">onTouchEvent</span>(MotionEvent me) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 263 </span>
+<span class="lineno"> 264 </span>        <span class="keyword">if</span> (mGestureDetector.onTouchEvent(me)) {
+<span class="lineno"> 265 </span>            <span class="keyword">return</span> <span class="keyword">true</span>;
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationClickableViewAccessibility" style="display: none;">
+If a <code>View</code> that overrides <code>onTouchEvent</code> or uses an <code>OnTouchListener</code> does not also implement <code>performClick</code> and call it when clicks are detected, the <code>View</code> may not handle accessibility actions properly. Logic handling the click actions should ideally be placed in <code>View#performClick</code> as some accessibility services invoke <code>performClick</code> when a click action should occur.<br/>To suppress this error, use the issue id "ClickableViewAccessibility" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ClickableViewAccessibility</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Accessibility</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationClickableViewAccessibilityLink" onclick="reveal('explanationClickableViewAccessibility');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ClickableViewAccessibilityCardLink" onclick="hideid('ClickableViewAccessibilityCard');">
 Dismiss</button>            </div>
             </div>
           </section>

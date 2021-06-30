@@ -1,4 +1,4 @@
-#Mon Jun 21 07:29:33 UTC 2021
-base.0=/home/marcosieben16/SoftKeyboard/app/build/intermediates/transforms/dexMerger/release/0
+#Wed Jun 30 03:24:00 UTC 2021
+base.0=/home/marcosieben16/app_test/app/build/intermediates/transforms/dexMerger/release/0
 renamed.0=classes.dex
 path.0=classes.dex
